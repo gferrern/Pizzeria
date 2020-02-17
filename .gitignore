@@ -1,4 +1,4 @@
-
+obj/
 obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
 obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
 obj/Debug/netcoreapp3.1/Pizzeria.csprojAssemblyReference.cache
@@ -8,3 +8,19 @@ obj/Pizzeria.csproj.nuget.g.props
 obj/Pizzeria.csproj.nuget.g.targets
 obj/project.assets.json
 Pizzeria.csproj
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfo.cs
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfo.cs
+obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
+obj/Debug/netcoreapp3.1/Pizzeria.csprojAssemblyReference.cache
+obj/Debug/netcoreapp3.1/project.razor.json
+bin/
+obj/Debug/netcoreapp3.1/Pizzeria.csprojAssemblyReference.cache
+obj/Debug/netcoreapp3.1/project.razor.json
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfo.cs
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfoInputs.cache
+obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfo.cs
+obj/Debug/netcoreapp3.1/Pizzeria.AssemblyInfoInputs.cache
+obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
+obj/Debug/netcoreapp3.1/Pizzeria.csprojAssemblyReference.cache
+obj/Debug/netcoreapp3.1/project.razor.json
