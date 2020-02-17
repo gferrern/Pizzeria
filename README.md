@@ -10,9 +10,9 @@
     * https://marketplace.visualstudio.com/items?itemName=ms-mssql.mssql
     * https://marketplace.visualstudio.com/items?itemName=vitorsalgado.vscode-redis
   - Install Entity Framework by the following steps:
-	> https://docs.microsoft.com/es-es/ef/core/get-started/install/
+    * https://docs.microsoft.com/es-es/ef/core/get-started/install/
   - Install Postman:
-  	> https://www.postman.com/downloads/
+    * https://www.postman.com/downloads/
 ### The project
 For run the project
 ```sh
