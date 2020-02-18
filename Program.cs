@@ -18,6 +18,7 @@ namespace pizzeria
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                //Console.WriteLine("Parameters {0} - {1}", [args[0],args[1]]);
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\opinno\\Documents\\pizzeria\\pizzeria.csproj",
-      "projectName": "pizzeria",
-      "projectPath": "C:\\Users\\opinno\\Documents\\pizzeria\\pizzeria.csproj",
+      "projectUniqueName": "C:\\Users\\opinno\\Desktop\\Projects\\Pizzeria\\Pizzeria.csproj",
+      "projectName": "Pizzeria",
+      "projectPath": "C:\\Users\\opinno\\Desktop\\Projects\\Pizzeria\\Pizzeria.csproj",
       "packagesPath": "C:\\Users\\opinno\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\opinno\\Documents\\pizzeria\\obj\\",
+      "outputPath": "C:\\Users\\opinno\\Desktop\\Projects\\Pizzeria\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\opinno\\AppData\\Roaming\\NuGet\\NuGet.Config"

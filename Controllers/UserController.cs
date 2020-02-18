@@ -17,7 +17,7 @@ namespace pizzeria.Controllers
         private readonly ILogger<WeatherForecastController> _logger;
         private readonly IUserService _userService;
 
-        public UserController(ILogger<WeatherForecastController> logger,IUserService userService)
+        public UserController(ILogger<WeatherForecastController> logger, IUserService userService)
         {
             _logger = logger;
             _userService = userService;
@@ -27,9 +27,16 @@ namespace pizzeria.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]UserRegister userRegister)
+        public IActionResult Post([FromBody]UserRegister userRegister)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+
+            }
             _userService.Register(userRegister);
+            return Ok();
+
         }
     }
 }

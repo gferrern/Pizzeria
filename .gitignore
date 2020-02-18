@@ -1,10 +1,2 @@
-
-obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
-obj/Debug/netcoreapp3.1/Pizzeria.assets.cache
-obj/Debug/netcoreapp3.1/Pizzeria.csprojAssemblyReference.cache
-obj/Pizzeria.csproj.nuget.cache
-obj/Pizzeria.csproj.nuget.dgspec.json
-obj/Pizzeria.csproj.nuget.g.props
-obj/Pizzeria.csproj.nuget.g.targets
-obj/project.assets.json
-Pizzeria.csproj
+obj/*
+bin/*
