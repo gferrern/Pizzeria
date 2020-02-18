@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projects\\Pizzeria\\Pizzeria.csproj": {}
+    "c:\\projects\\Pizzeria\\Pizzeria.csproj": {}
   },
   "projects": {
-    "C:\\projects\\Pizzeria\\Pizzeria.csproj": {
+    "c:\\projects\\Pizzeria\\Pizzeria.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projects\\Pizzeria\\Pizzeria.csproj",
+        "projectUniqueName": "c:\\projects\\Pizzeria\\Pizzeria.csproj",
         "projectName": "Pizzeria",
-        "projectPath": "C:\\projects\\Pizzeria\\Pizzeria.csproj",
+        "projectPath": "c:\\projects\\Pizzeria\\Pizzeria.csproj",
         "packagesPath": "C:\\Users\\Guille\\.nuget\\packages\\",
-        "outputPath": "C:\\projects\\Pizzeria\\obj\\",
+        "outputPath": "c:\\projects\\Pizzeria\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Guille\\AppData\\Roaming\\NuGet\\NuGet.Config"
