@@ -14,10 +14,10 @@ namespace pizzeria.Controllers
     public class UserController : ControllerBase
     {
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<UserController> _logger;
         private readonly IUserService _userService;
 
-        public UserController(ILogger<WeatherForecastController> logger, IUserService userService)
+        public UserController(ILogger<UserController> logger,IUserService userService)
         {
             _logger = logger;
             _userService = userService;
