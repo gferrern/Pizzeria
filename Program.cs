@@ -13,12 +13,13 @@ namespace pizzeria
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Console.WriteLine("Connect to host:{0} - user:{1} - passwd:{2}",args[0],args[1],args[2]);
+            CreateHostBuilder(args).Build().Run(); 
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
+            
             Host.CreateDefaultBuilder(args)
-                //Console.WriteLine("Parameters {0} - {1}", [args[0],args[1]]);
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
