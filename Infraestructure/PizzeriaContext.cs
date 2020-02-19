@@ -6,7 +6,7 @@ namespace pizzeria.Infraestructure{
     {
         public PizzeriaContext(Parameters)
         {
-            this.SaveChanges()
+            this.SaveChanges();
         }
         public DbSet<User> User{get; set;}
     }

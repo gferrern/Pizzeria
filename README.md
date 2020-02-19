@@ -13,6 +13,9 @@
   
   - Install Entity Framework by the following steps:
     * https://docs.microsoft.com/es-es/ef/core/get-started/install/
+    * dotnet add package EntityFramework --version 6.4.0
+  - Install Entity Framework Core:
+    * dotnet add package Microsoft.EntityFrameworkCore.SqlServer
   
   - Install Postman:
     * https://www.postman.com/downloads/
