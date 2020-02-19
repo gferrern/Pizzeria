@@ -1,6 +1,5 @@
 ﻿namespace pizzeria.Infraestructure
 {
-    public interface IUserRepository
-    {
+    public interface IUserRepository{
     }
 }
