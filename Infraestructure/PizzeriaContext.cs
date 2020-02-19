@@ -1,13 +1,15 @@
-using System.Data.Entity;
 using pizzeria.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace pizzeria.Infraestructure{
     public class PizzeriaContext:DbContext
     {
-        public PizzeriaContext(Parameters)
+
+        public PizzeriaContext (DbContextOptions<PizzeriaContext> options)
+            : base(options)
         {
-            this.SaveChanges();
         }
+
         public DbSet<User> User{get; set;}
     }
 }

@@ -13,7 +13,6 @@ namespace pizzeria
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Connect to host:{0} - user:{1} - passwd:{2}",args[0],args[1],args[2]);
             CreateHostBuilder(args).Build().Run(); 
         }
 

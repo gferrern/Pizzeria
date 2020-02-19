@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using pizzeria.Application;
-
+using pizzeria.Infraestructure;
+using Microsoft.EntityFrameworkCore;
 namespace pizzeria
 {
     public class Startup
@@ -28,6 +28,9 @@ namespace pizzeria
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+            services.AddDbContext<PizzeriaContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("PizzeriaContext")));
             //services.Add(new ServiceDescriptor())
             var userService = new ServiceDescriptor(typeof(IUserService), typeof(UserService), ServiceLifetime.Scoped); 
             services.Add(userService);
