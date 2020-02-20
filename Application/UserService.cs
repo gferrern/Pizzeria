@@ -6,7 +6,7 @@ namespace pizzeria.Application{
     public class UserService : IUserService
     {
         private readonly IUserRepository _repositoryUser;
-        private UserService(IUserRepository repositoryUser){
+        public UserService(IUserRepository repositoryUser){
             _repositoryUser = repositoryUser;
         }
         //contrustor
