@@ -2,14 +2,24 @@ using pizzeria.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace pizzeria.Infraestructure{
-    public class PizzeriaContext:DbContext
+    public class PizzeriaContext: DbContext,IUserRepository
     {
 
         public PizzeriaContext (DbContextOptions<PizzeriaContext> options)
             : base(options)
         {
+            
+        }
+        public override int SaveChanges(){
+            try{
+                return base.SaveChanges();
+            }
+            catch{
+                throw;
+            }
         }
 
         public DbSet<User> User{get; set;}
+
     }
 }

@@ -21,9 +21,7 @@ namespace pizzeria.Controllers
         {
             _logger = logger;
             _userService = userService;
-            //_userService = new UserService() //TODO: VIOLAMOS SOLID D
-            //https://localhost:5001/WeatherForecast
-            //https://www.c-sharpcorner.com/article/using-servicedescriptor-to-register-dependencies-in-asp-net-core/
+           
         }
 
         [HttpPost]

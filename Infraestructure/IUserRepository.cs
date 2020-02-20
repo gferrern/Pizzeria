@@ -1,9 +1,13 @@
-﻿using pizzeria.Dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using pizzeria.Domain;
 
-namespace pizzeria.Infraestructure
-{
-    public interface IUserRepository{
-        void Insert (UserRegister userRegister);
-        void Save (PizzeriaContext pizzeriaContext);
+namespace pizzeria.Infraestructure{
+    public interface IUoW{
+        int SaveChanges();
+    }
+    public interface IUserRepository:IUoW
+    {       
+        DbSet<User> User{get; set;}
+
     }
 }
