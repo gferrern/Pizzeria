@@ -4,3 +4,4 @@ namespace pizzeria.Domain{
     public class Ingredients {
         
     }
+}
