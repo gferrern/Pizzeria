@@ -7,6 +7,6 @@ namespace pizzeria.Dtos{
         [Required][MaxLength(16)]
         public string FileName {get;set;}
         [Required]
-        public byte[] FileData { get; set; }
+        public IFormFile FileData { get; set; }
     }
 }

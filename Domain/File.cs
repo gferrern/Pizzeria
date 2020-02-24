@@ -6,7 +6,7 @@ namespace pizzeria.Domain{
     public class File{
         public Guid Id{get;set;}
         public string FileName {get;set;}
-        public byte[] FileData{get;set;}
+        public IFormFile FileData{get;set;}
 
         public static File Upload(fileUpload fileupload){
             var file = new File();
