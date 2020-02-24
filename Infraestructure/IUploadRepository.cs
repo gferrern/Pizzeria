@@ -7,7 +7,7 @@ namespace pizzeria.Infraestructure{
     }
     public interface IUploadRepository:IUpoW
     {       
-        DbSet<File> File{get; set;}
+        DbSet<FileUploader> FileUploader{get; set;}
 
     }
 }

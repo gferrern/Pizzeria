@@ -20,7 +20,7 @@ namespace pizzeria.Infraestructure{
         }
 
         public DbSet<User> User{get; set;}
-        public DbSet<File> File{get; set;}
+        public DbSet<FileUploader> FileUploader{get; set;}
 
     }
 }
