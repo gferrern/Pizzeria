@@ -18,5 +18,11 @@ namespace pizzeria.Application{
             _repositoryUser.SaveChanges();
             
         }
+        public void Upload(fileUpload fileupload)
+        {
+            var file  = File.Upload(fileupload);            
+            _repositoryUser.SaveChanges();
+            
+        }
     }
 }

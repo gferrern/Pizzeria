@@ -36,6 +36,8 @@ namespace pizzeria
             services.Add(userService);
             var userRepository = new ServiceDescriptor(typeof(IUserRepository),typeof(PizzeriaContext),ServiceLifetime.Scoped);
             services.Add(userRepository);
+            var uploadService = new ServiceDescriptor(typeof(IUploadRepository), typeof(UploadContext), ServiceLifetime.Scoped); 
+            services.Add(uploadService);
             services.AddMvc()
                 .ConfigureApiBehaviorOptions(options =>{
                     options.SuppressModelStateInvalidFilter = true;
