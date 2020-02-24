@@ -25,14 +25,14 @@ namespace pizzeria.Controllers
         }
 
         [HttpPost]
-        public IActionResult fileUpload([FromBody]fileUpload file)
+        public ActionResult fileUpload([FromForm]fileUpload file)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
 
             }
-            _uploadService.Upload(file);
+            //_uploadService.Upload(file);
             return Ok();
 
         }
