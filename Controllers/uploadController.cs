@@ -32,7 +32,7 @@ namespace pizzeria.Controllers
                 return BadRequest(ModelState);
 
             }
-            _uploadService.Upload(file);
+            //_uploadService.Upload(file);
             return Ok();
 
         }
