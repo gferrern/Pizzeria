@@ -20,12 +20,15 @@ namespace pizzeria.Application
         {
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");
-
             var file = FileUploader.prepareUpload(fileupload);
-            using (FileStream fs = File.Open(path, FileMode.Open, FileAccess.Write, FileShare.None))
+            using (FileStream fs = File.Open(path+"\\"+file.FileName+".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
             {
-                Byte[] info = new UTF8Encoding(true).GetBytes("This is some text in the file.");
-                fs.Write(info, 0, info.Length);
+                using(var ms = new MemoryStream()){
+                file.FileData.CopyTo(ms);
+                var filebytes = ms.ToArray();
+                fs.Write(filebytes, 0, filebytes.Length);
+                filebytes = null;
+                }
             }
             Console.WriteLine("fichero guardado en {0}", path);
         }
