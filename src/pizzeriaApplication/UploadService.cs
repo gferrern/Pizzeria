@@ -18,6 +18,7 @@ namespace pizzeria.Application
 
         public void Upload(fileUpload fileupload)
         {
+            /*
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");
             var file = FileUploader.prepareUpload(fileupload);
@@ -31,6 +32,7 @@ namespace pizzeria.Application
                 }
             }
             Console.WriteLine("fichero guardado en {0}", path);
+            */
         }
     }
 }
