@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using pizzeria.Application;
 using pizzeria.Infraestructure;
 using Microsoft.EntityFrameworkCore;
+
 namespace pizzeria
 {
     public class Startup
@@ -36,6 +37,11 @@ namespace pizzeria
             services.Add(userService);
             var userRepository = new ServiceDescriptor(typeof(IUserRepository),typeof(PizzeriaContext),ServiceLifetime.Scoped);
             services.Add(userRepository);
+            var ingredientService = new ServiceDescriptor(typeof(IIngredientService), typeof(IngrdientService), ServiceLifetime.Scoped); 
+            services.Add(ingredientService);
+            var ingredientRepository = new ServiceDescriptor(typeof(IIngredientRepository),typeof(PizzeriaContext),ServiceLifetime.Scoped);
+            services.Add(ingredientRepository);
+            
             var uploadService = new ServiceDescriptor(typeof(IUploadService), typeof(UploadService), ServiceLifetime.Scoped); 
             services.Add(uploadService);
             var uploadRepository = new ServiceDescriptor(typeof(IUploadRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped); 
