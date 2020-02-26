@@ -16,23 +16,20 @@ namespace pizzeria.Application
             _repositoryUpload = repositoryUpload;
         }
 
-        public void Upload(fileUpload fileupload)
+        public void Upload(FileUploader fileupload)
         {
-            /*
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");
-            var file = FileUploader.prepareUpload(fileupload);
-            using (FileStream fs = File.Open(path+"\\"+file.FileName+".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+            using (FileStream fs = File.Open(path+"\\"+fileupload.FileName+".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
             {
                 using(var ms = new MemoryStream()){
-                file.FileData.CopyTo(ms);
+                fileupload.FileData.CopyTo(ms);
                 var filebytes = ms.ToArray();
                 fs.Write(filebytes, 0, filebytes.Length);
                 filebytes = null;
                 }
             }
             Console.WriteLine("fichero guardado en {0}", path);
-            */
         }
     }
 }

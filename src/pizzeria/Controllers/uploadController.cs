@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using pizzeria.Dtos;
 using pizzeria.Application;
+using pizzeria.Domain;
 
 namespace pizzeria.Controllers
 {
@@ -32,7 +33,11 @@ namespace pizzeria.Controllers
                 return BadRequest(ModelState);
 
             }
-            _uploadService.Upload(file);
+            var fileuploader = new FileUploader();
+            fileuploader.Id = Guid.NewGuid();
+            fileuploader.FileName = file.FileName;
+            fileuploader.FileData = file.FileData;
+            _uploadService.Upload(fileuploader);
             return Ok();
 
         }

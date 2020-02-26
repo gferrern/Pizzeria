@@ -1,8 +1,8 @@
-using pizzeria.Dtos;
-using System;
+using pizzeria.Domain;
+
 namespace pizzeria.Application{
     public interface IUploadService
     {
-        void Upload(fileUpload fileupload);
+        void Upload(FileUploader fileupload);
     }
 }
