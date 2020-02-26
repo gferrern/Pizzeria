@@ -26,7 +26,7 @@ namespace pizzeria.Controllers
         }
 
         [HttpPost]
-        public ActionResult fileUpload([FromForm]fileUpload file)
+        public IActionResult fileUpload([FromBody]fileUpload file)
         {
             if (!ModelState.IsValid)
             {
@@ -36,7 +36,7 @@ namespace pizzeria.Controllers
             var fileuploader = new FileUploader();
             fileuploader.Id = Guid.NewGuid();
             fileuploader.FileName = file.FileName;
-            fileuploader.FileData = file.FileData;
+            fileuploader.FileData = file.FileData.ToArray();
             _uploadService.Upload(fileuploader);
             return Ok();
 

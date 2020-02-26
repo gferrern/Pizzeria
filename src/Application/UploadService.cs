@@ -22,12 +22,7 @@ namespace pizzeria.Application
             string path = Path.GetFullPath("tmp");
             using (FileStream fs = File.Open(path+"\\"+fileupload.FileName+".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
             {
-                using(var ms = new MemoryStream()){
-                fileupload.FileData.CopyTo(ms);
-                var filebytes = ms.ToArray();
-                fs.Write(filebytes, 0, filebytes.Length);
-                filebytes = null;
-                }
+                fs.Write(fileupload.FileData, 0, fileupload.FileData.Length);
             }
             Console.WriteLine("fichero guardado en {0}", path);
         }
