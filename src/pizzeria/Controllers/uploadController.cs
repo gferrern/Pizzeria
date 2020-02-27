@@ -7,6 +7,8 @@ using Microsoft.Extensions.Logging;
 using pizzeria.Dtos;
 using pizzeria.Application;
 using pizzeria.Domain;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace pizzeria.Controllers
 {
@@ -18,15 +20,19 @@ namespace pizzeria.Controllers
         private readonly ILogger<uploadController> _logger;
         private readonly IUploadService _uploadService;
 
-        public uploadController(ILogger<uploadController> logger,IUploadService uploadService)
+        public uploadController(ILogger<uploadController> logger, IUploadService uploadService)
         {
             _logger = logger;
             _uploadService = uploadService;
-           
+
+        }
+        public interface IStream
+        {
+            Task<byte[]> GetPic(IFormFile file);
         }
 
         [HttpPost]
-        public IActionResult fileUpload([FromBody]fileUpload file)
+        public IActionResult fileUpload2([FromBody]fileUpload file)
         {
             if (!ModelState.IsValid)
             {
@@ -35,8 +41,6 @@ namespace pizzeria.Controllers
             }
             var fileuploader = new FileUploader();
             fileuploader.Id = Guid.NewGuid();
-            fileuploader.FileName = file.FileName;
-            fileuploader.FileData = file.FileData.ToArray();
             _uploadService.Upload(fileuploader);
             return Ok();
 

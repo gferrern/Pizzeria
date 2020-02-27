@@ -1,10 +1,8 @@
 using pizzeria.Domain;
-using pizzeria.Dtos;
 using pizzeria.Infraestructure;
 using System;
 using System.IO;
-using System.Collections;
-using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace pizzeria.Application
 {
@@ -24,6 +22,13 @@ namespace pizzeria.Application
             {
                 fs.Write(fileupload.FileData, 0, fileupload.FileData.Length);
             }
+            Console.WriteLine("fichero guardado en {0}", path);
+        }
+        public void Upload2(IFormFile file)
+        {
+            Directory.CreateDirectory("tmp");
+            string path = Path.GetFullPath("tmp");
+
             Console.WriteLine("fichero guardado en {0}", path);
         }
     }

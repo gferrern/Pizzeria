@@ -4,13 +4,14 @@
    // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
    "version": "0.2.0",
    "configurations": [
+
         {
-            "name": ".NET Core Launch (web)",
+            "name": "Run Pizzeria",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Pizzeria.dll",
+            "program": "${workspaceFolder}/src/pizzeria/bin/Debug/netcoreapp3.1/Pizzeria.dll",
             "args": ["localhost","root","pswd"],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -21,9 +22,6 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
             }
         },
         {
