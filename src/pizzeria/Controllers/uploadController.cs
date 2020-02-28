@@ -9,30 +9,30 @@ namespace pizzeria.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class uploadController : ControllerBase
+    public class UploadController : ControllerBase
     {
 
-        private readonly ILogger<uploadController> _logger;
-        private readonly IUploadService _uploadService;
+        private readonly ILogger<UploadController> _logger;
+        private readonly IUploadService _UploadService;
 
-        public uploadController(ILogger<uploadController> logger, IUploadService uploadService)
+        public UploadController(ILogger<UploadController> logger, IUploadService UploadService)
         {
             _logger = logger;
-            _uploadService = uploadService;
+            _UploadService = UploadService;
 
         }
 
         [HttpPost]
-        public IActionResult upload([FromBody]fileUpload file)
+        public IActionResult Upload([FromBody]fileUpload file)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
 
             }
-            var fileuploader = new FileUploader();
-            fileuploader.Id = Guid.NewGuid();
-            _uploadService.Upload(fileuploader);
+            var fileUploader = new FileUploader();
+            fileUploader.Id = Guid.NewGuid();
+            _UploadService.Upload(fileUploader);
             return Ok();
 
         }
