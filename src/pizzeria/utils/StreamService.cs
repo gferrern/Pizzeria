@@ -4,7 +4,7 @@ namespace pizzeria.utils
 {
     public class StreamService : IStreamService
     {
-        public static byte[] getfile(IFormFile file)
+        public byte[] GetBytes(IFormFile file)
         {
             using (var memoryStream = new MemoryStream())
             {

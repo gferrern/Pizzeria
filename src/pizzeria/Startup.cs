@@ -36,12 +36,10 @@ namespace pizzeria
             services.Add(ingredientService);
             var ingredientRepository = new ServiceDescriptor(typeof(IIngredientRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
             services.Add(ingredientRepository);
-
             var streamService = new ServiceDescriptor(typeof(IStreamService), typeof(StreamService), ServiceLifetime.Scoped);
             services.Add(streamService);
             var streamRepository = new ServiceDescriptor(typeof(IStreamRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
             services.Add(streamRepository);
-
             var uploadService = new ServiceDescriptor(typeof(IUploadService), typeof(UploadService), ServiceLifetime.Scoped);
             services.Add(uploadService);
             var uploadRepository = new ServiceDescriptor(typeof(IUploadRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
