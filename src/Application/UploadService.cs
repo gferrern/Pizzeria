@@ -18,7 +18,7 @@ namespace pizzeria.Application
         {
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");
-            using (FileStream fs = File.Open(path+"\\"+fileupload.FileName+".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
+            using (FileStream fs = File.Open(path + "\\" + fileupload.FileName + ".jpg", FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
             {
                 fs.Write(fileupload.FileData, 0, fileupload.FileData.Length);
             }

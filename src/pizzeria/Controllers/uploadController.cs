@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using pizzeria.Dtos;
 using pizzeria.Application;
 using pizzeria.Domain;
-using Microsoft.AspNetCore.Http;
-using System.IO;
 
 namespace pizzeria.Controllers
 {
@@ -26,13 +21,9 @@ namespace pizzeria.Controllers
             _uploadService = uploadService;
 
         }
-        public interface IStream
-        {
-            Task<byte[]> GetPic(IFormFile file);
-        }
 
         [HttpPost]
-        public IActionResult fileUpload2([FromBody]fileUpload file)
+        public IActionResult upload([FromBody]fileUpload file)
         {
             if (!ModelState.IsValid)
             {

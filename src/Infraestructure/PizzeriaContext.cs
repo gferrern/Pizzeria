@@ -2,7 +2,7 @@ using pizzeria.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace pizzeria.Infraestructure{
-    public class PizzeriaContext: DbContext,IUserRepository,IUploadRepository,IIngredientRepository
+    public class PizzeriaContext: DbContext,IUserRepository,IUploadRepository,IIngredientRepository,IStreamRepository
     {
 
         public PizzeriaContext (DbContextOptions<PizzeriaContext> options)
