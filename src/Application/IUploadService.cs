@@ -1,7 +1,8 @@
 using pizzeria.Domain;
 using Microsoft.AspNetCore.Http;
 
-namespace pizzeria.Application{
+namespace pizzeria.Application
+{
     public interface IUploadService
     {
         void Upload(FileUploader fileupload);
