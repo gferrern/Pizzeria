@@ -5,7 +5,7 @@ namespace pizzeria.Application
 {
     public interface IUploadService
     {
-        void Upload(FileUploader fileupload);
-        void Upload2(IFormFile file);
+        void uploadToHardDisk(FileUploader fileupload);
+        void upload(FileUploader file);
     }
 }

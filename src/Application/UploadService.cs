@@ -14,7 +14,7 @@ namespace pizzeria.Application
             _repositoryUpload = repositoryUpload;
         }
 
-        public void Upload(FileUploader fileupload)
+        public void uploadToHardDisk(FileUploader fileupload)
         {
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");
@@ -24,7 +24,7 @@ namespace pizzeria.Application
             }
             Console.WriteLine("fichero guardado en {0}", path);
         }
-        public void Upload2(IFormFile file)
+        public void upload(FileUploader file)
         {
             Directory.CreateDirectory("tmp");
             string path = Path.GetFullPath("tmp");

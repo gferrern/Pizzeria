@@ -12,4 +12,6 @@ dotnet build
 cd ..
 cd pizzeria
 dotnet build
+cd ..
+cd ..
 pause
