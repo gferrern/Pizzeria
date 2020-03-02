@@ -30,5 +30,6 @@ namespace pizzeria.Controllers
             _ingredientService.Upload(ingredientFileRead);
             return Ok();
         }
-    }
+
+//utilizar GetFile(file)    }
 }
