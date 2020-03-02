@@ -2,7 +2,7 @@ using pizzeria.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace pizzeria.Infraestructure{
-    public class PizzeriaContext: DbContext,IUserRepository,IUploadRepository,IIngredientRepository,IStreamRepository
+    public class PizzeriaContext: DbContext,IUserRepository,IPizzeriaRepository,IIngredientRepository
     {
 
         public PizzeriaContext (DbContextOptions<PizzeriaContext> options)
@@ -20,7 +20,7 @@ namespace pizzeria.Infraestructure{
         }
 
         public DbSet<User> User{get; set;}
-        public DbSet<FileUploader> FileUploader{get; set;}
+        public DbSet<Pizzeria> Pizzeria{get; set;}
         public DbSet<Ingredient> Ingredient{get; set;}
 
     }

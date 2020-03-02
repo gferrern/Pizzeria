@@ -35,7 +35,6 @@ namespace pizzeria
                 options.InstanceName = Configuration.GetConnectionString("redisInstance");;
             });
 
-            //services.Add(new ServiceDescriptor())
             var userService = new ServiceDescriptor(typeof(IUserService), typeof(UserService), ServiceLifetime.Scoped);
             services.Add(userService);
             var userRepository = new ServiceDescriptor(typeof(IUserRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
@@ -43,15 +42,13 @@ namespace pizzeria
             var ingredientService = new ServiceDescriptor(typeof(IIngredientService), typeof(IngrdientService), ServiceLifetime.Scoped);
             services.Add(ingredientService);
             var ingredientRepository = new ServiceDescriptor(typeof(IIngredientRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
-            services.Add(ingredientRepository);
-            var streamService = new ServiceDescriptor(typeof(IStreamService), typeof(StreamService), ServiceLifetime.Scoped);
-            services.Add(streamService);
-            var streamRepository = new ServiceDescriptor(typeof(IStreamRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
-            services.Add(streamRepository);
-            var uploadService = new ServiceDescriptor(typeof(IUploadService), typeof(UploadService), ServiceLifetime.Scoped);
+            services.Add(ingredientRepository);           
+            var uploadService = new ServiceDescriptor(typeof(IPizzeriaService), typeof(PizzeriaService), ServiceLifetime.Scoped);
             services.Add(uploadService);
-            var uploadRepository = new ServiceDescriptor(typeof(IUploadRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
+            var uploadRepository = new ServiceDescriptor(typeof(IPizzeriaRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);            
             services.Add(uploadRepository);
+            var streamService = new ServiceDescriptor(typeof(IStreamService),typeof(StreamService),ServiceLifetime.Scoped);
+            services.Add(streamService);
             services.AddMvc()
                 .ConfigureApiBehaviorOptions(options =>
                 {

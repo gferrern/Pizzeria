@@ -3,13 +3,13 @@ using pizzeria.Domain;
 
 namespace pizzeria.Infraestructure
 {
-    public interface IUpoW
+    public interface IPizzeriaW
     {
         int SaveChanges();
     }
-    public interface IUploadRepository : IUpoW
+    public interface IPizzeriaRepository : IPizzeriaW
     {
-        DbSet<FileUploader> FileUploader { get; set; }
+        DbSet<Pizzeria> Pizzeria { get; set; }
 
     }
 }
