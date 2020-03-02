@@ -1,9 +1,9 @@
 using pizzeria.Domain;
 using Microsoft.EntityFrameworkCore;
-
+using StackExchange.Redis;
 namespace pizzeria.Infraestructure
 {
-    public class PizzeriaContext : DbContext, IUserRepository, IPizzeriaRepository, IIngredientRepository
+    public class PizzeriaContext : DbContext, IUserRepository, IPizzeriaRepository, IIngredientRepository, ITempImageRepository
     {
 
         public PizzeriaContext(DbContextOptions<PizzeriaContext> options)
@@ -20,6 +20,14 @@ namespace pizzeria.Infraestructure
             catch
             {
                 throw;
+            }
+        }
+        public void Add(TempImage image)
+        {
+            using (var multiplexer = ConnectionMultiplexer.Connect("localhost:6379"))
+            {
+                var db = multiplexer.GetDatabase();
+                db.SetAdd("image", image.Image);
             }
         }
         public DbSet<User> User { get; set; }

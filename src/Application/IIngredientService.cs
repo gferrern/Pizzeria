@@ -1,9 +1,10 @@
 using pizzeria.Dtos;
-using System;
+using System.Collections.Generic;
+
 namespace pizzeria.Application
 {
     public interface IIngredientService
     {
-        void Upload(IngredientFileRead ingredientFileRead);
+        void AddRange(IEnumerable<IngredientFileRead> ingredientFileRead);
     }
 }

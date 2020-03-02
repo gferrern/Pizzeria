@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using pizzeria.Dtos;
 using pizzeria.Application;
-using CsvHelper ; 
+using CsvHelper;
 using System.IO;
 
 namespace pizzeria.Controllers
@@ -29,12 +29,14 @@ namespace pizzeria.Controllers
                 return BadRequest(ModelState);
 
             }
+            /*
             _ingredientService.readFile(ingredientFileRead);
                         using (TextReader fileReader = File.OpenText(ingredientFileRead))
             {
                 var csv = new CsvReader(fileReader);
                 result = csv.GetRecords<IngredientFileRead>().ToList();
 
+*/
             return Ok();
         }
     }

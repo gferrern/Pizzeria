@@ -6,7 +6,6 @@ namespace pizzeria.Infraestructure
     public interface ITempImageRepository
     {
         void Add(TempImage image);
-
     }
 
     public class TempImageRepository : ITempImageRepository

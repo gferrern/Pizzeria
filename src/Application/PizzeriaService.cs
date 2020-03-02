@@ -1,8 +1,5 @@
 using pizzeria.Domain;
 using pizzeria.Infraestructure;
-using System;
-using System.IO;
-using Microsoft.AspNetCore.Http;
 
 namespace pizzeria.Application
 {
