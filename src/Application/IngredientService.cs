@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using pizzeria.Domain;
 using pizzeria.Dtos;
 using pizzeria.Infraestructure;
@@ -12,14 +13,13 @@ namespace pizzeria.Application
             _repositoryIngredient = repositoryIngredient;
         }
 
-
-        public void Upload(IngredientFileRead ingredientFileRead)
+        public void AddRange(IEnumerable<IngredientFileRead> ingredientFileRead)
         {
-            var ingredient = Ingredient.Create(ingredientFileRead);
-            _repositoryIngredient.Ingredient.Add(ingredient);
+            foreach(var ingredient in ingredientFileRead){
+                var ing=Ingredient.Create(ingredient);
+                _repositoryIngredient.Ingredient.Add(ing);
+            }
             _repositoryIngredient.SaveChanges();
-
         }
-
     }
 }
