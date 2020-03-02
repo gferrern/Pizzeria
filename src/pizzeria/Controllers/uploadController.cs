@@ -29,12 +29,6 @@ namespace pizzeria.Controllers
         [HttpPost]
         public IActionResult upload([FromBody]fileUpload file)
         {
-            Console.WriteLine("pasapollo {0}", file);
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-
-            }
             var currentTimeUTC = DateTime.UtcNow.ToString();
             byte[] encodedCurrentTimeUTC = Encoding.UTF8.GetBytes(currentTimeUTC);
             var options = new DistributedCacheEntryOptions()
