@@ -29,7 +29,7 @@ namespace pizzeria.Controllers
             
         }
 
-        [HttpPost]
+        [HttpPost("uploadImage")]
         public IActionResult Post([FromForm]IFormFile image)
         {
             var result = _streamService.GetBytes(image);

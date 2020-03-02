@@ -6,11 +6,13 @@ namespace pizzeria.utils
     {
         public byte[] GetBytes(IFormFile file)
         {
+            byte[] filebytes;
             using (var memoryStream = new MemoryStream())
             {
                 file.CopyTo(memoryStream);
-                return memoryStream.ToArray();
+                filebytes = memoryStream.ToArray();
             }
+            return filebytes;
         }
     }
 }

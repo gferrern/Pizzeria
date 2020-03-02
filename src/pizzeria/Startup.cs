@@ -7,7 +7,6 @@ using pizzeria.utils;
 using pizzeria.Application;
 using pizzeria.Infraestructure;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Caching.StackExchangeRedis;
 
 namespace pizzeria
 {
@@ -28,12 +27,6 @@ namespace pizzeria
 
             services.AddDbContext<PizzeriaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("PizzeriaContext")));
-
-            services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = Configuration.GetConnectionString("redisConfiguration");
-                options.InstanceName = Configuration.GetConnectionString("redisInstance");;
-            });
 
             var userService = new ServiceDescriptor(typeof(IUserService), typeof(UserService), ServiceLifetime.Scoped);
             services.Add(userService);

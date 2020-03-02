@@ -12,11 +12,11 @@ namespace pizzeria.Controllers
 
         private readonly ILogger<IngredientController> _logger;
         private readonly IIngredientService _ingredientService;
-        public IngredientController(ILogger<IngredientController> logger,IIngredientService uploadService)
+        public IngredientController(ILogger<IngredientController> logger, IIngredientService uploadService)
         {
             _logger = logger;
             _ingredientService = uploadService;
-           
+
         }
 
         [HttpPost]
@@ -30,6 +30,5 @@ namespace pizzeria.Controllers
             _ingredientService.Upload(ingredientFileRead);
             return Ok();
         }
-
-//utilizar GetFile(file)    }
+    }
 }
