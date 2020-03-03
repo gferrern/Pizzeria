@@ -22,12 +22,20 @@ namespace pizzeria.Infraestructure
         }
         public void Add(TempImage image)
         {
-            using (var multiplexer = ConnectionMultiplexer.Connect(_connection))
+            try
             {
-                var db = multiplexer.GetDatabase();                
-                db.SetAdd(image.Id.ToString(), image.Image);//añadir try catch
-                db.KeyExpire(image.Id.ToString(),TimeSpan.FromHours(12));
+                using (var multiplexer = ConnectionMultiplexer.Connect(_connection))
+                {
+                    var db = multiplexer.GetDatabase();
+                    db.SetAdd(image.Id.ToString(), image.Image);
+                    db.KeyExpire(image.Id.ToString(), TimeSpan.FromHours(12));
+                }
             }
+            catch (RedisException e)
+            {
+                Console.WriteLine("Exception: {0}",e);
+            }
+
         }
     }
 }
