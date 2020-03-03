@@ -37,13 +37,13 @@ namespace pizzeria
             var ingredientRepository = new ServiceDescriptor(typeof(IIngredientRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
             services.Add(ingredientRepository);           
             var pizzeriaService = new ServiceDescriptor(typeof(IPizzeriaService), typeof(PizzeriaService), ServiceLifetime.Scoped);
-            services.Add(pizzeriaService);
-            var tempImageRepository = new ServiceDescriptor(typeof(ITempImageRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
-            services.Add(tempImageRepository);  
+            services.Add(pizzeriaService);          
             var uploadRepository = new ServiceDescriptor(typeof(IPizzeriaRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);            
             services.Add(uploadRepository);
             var streamService = new ServiceDescriptor(typeof(IStreamService),typeof(StreamService),ServiceLifetime.Scoped);
             services.Add(streamService);
+            var tempImageRepository = new ServiceDescriptor(typeof(ITempImageRepository),typeof(TempImageRepository),ServiceLifetime.Scoped);
+            services.Add(tempImageRepository);  
             services.AddMvc()
                 .ConfigureApiBehaviorOptions(options =>
                 {

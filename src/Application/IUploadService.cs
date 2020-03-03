@@ -1,5 +1,4 @@
 using pizzeria.Domain;
-using Microsoft.AspNetCore.Http;
 
 namespace pizzeria.Application
 {
