@@ -4,6 +4,7 @@ using pizzeria.Dtos;
 using pizzeria.Application;
 using CsvHelper;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace pizzeria.Controllers
 {
@@ -22,22 +23,27 @@ namespace pizzeria.Controllers
         }
 
         [HttpPost]
-        public IActionResult ingredient([FromBody]IngredientFileRead ingredientFileRead)
+        public IActionResult ingredient([FromForm]IFormFile csv)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
 
             }
-            /*
-            _ingredientService.readFile(ingredientFileRead);
-                        using (TextReader fileReader = File.OpenText(ingredientFileRead))
+            using (MemoryStream ms = new MemoryStream())
             {
-                var csv = new CsvReader(fileReader);
-                result = csv.GetRecords<IngredientFileRead>().ToList();
+                csv.CopyTo(ms);
+                using (TextReader fileReader = new StreamReader(ms))
+                {
+                    var csvReader= new CsvReader(fileReader, System.Globalization.CultureInfo.InvariantCulture);
+                    var result = csvReader.GetRecords<IngredientFileRead>();
+                    _ingredientService.AddRange(result);
+                    return Ok();
+                }
+            }
 
-*/
-            return Ok();
+
+            //utilizar GetFile(file)    }
         }
     }
 }
