@@ -21,12 +21,12 @@ namespace pizzeria.Controllers
 
         private readonly IStreamService _streamService;
 
-        public PizzeriasController(ILogger<PizzeriasController> logger, IPizzeriaService pizzeriaService,IStreamService streamService)
+        public PizzeriasController(ILogger<PizzeriasController> logger, IPizzeriaService pizzeriaService, IStreamService streamService)
         {
             _logger = logger;
             _pizzeriaService = pizzeriaService;
             _streamService = streamService;
-            
+
         }
 
         [HttpPost("uploadImage")]
@@ -34,7 +34,16 @@ namespace pizzeria.Controllers
         {
             var result = _streamService.GetBytes(image);
             var imageId = _pizzeriaService.Upload(result);
-            return Ok(imageId); 
+            return Ok(imageId);
+        }
+
+
+        [HttpPost("savetoDB")]
+        public IActionResult savetoDB([FromForm]IFormFile image)
+        {
+            var result = _streamService.GetBytes(image);
+            var imageId = _pizzeriaService.saveToDB(result);
+            return Ok(imageId);
         }
     }
 }

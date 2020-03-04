@@ -1,5 +1,6 @@
 using pizzeria.Domain;
 using pizzeria.Infraestructure;
+using System.IO;
 
 namespace pizzeria.Application
 {
@@ -19,6 +20,21 @@ namespace pizzeria.Application
             _tempImageRepository.Add(tempImage);
             return new {
                 Id = tempImage.Id
+            };
+        }
+
+        public object saveToDB(byte[] image)
+        {
+            var dto = new Dtos.PizzeriaDTO();
+            dto.Name = "Pepe";
+            using (var memoryStream = new MemoryStream(image))
+            {
+                dto.Image = memoryStream.ToArray();
+            }
+            var tmppizzeria = Pizzeria.Create(dto);
+            _repositoryPizzeria.Pizzeria.Add(tmppizzeria);
+            return new {
+                Id = tmppizzeria.Id
             };
         }
     }

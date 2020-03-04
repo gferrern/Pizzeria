@@ -2,12 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pizzeria.Dtos
 {
-    public class IngredientFileRead
+    public class PizzeriaDTO
     {
         [Required]
-        public string Name { get; set; }
+        public string Name {get; set; }
         [Required]
-        public decimal Price { get; set; }
+        public byte[] Image { get; set; }
+
     }
 }
-
