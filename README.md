@@ -35,3 +35,13 @@ For run the project
 ```sh
 dotnet run
 ```
+
+crear carpeta en Pizzeria/src/ImageServer
+
+npm init
+
+npm install express --save
+
+npm install body-parser --save
+
+npm install --save multer
