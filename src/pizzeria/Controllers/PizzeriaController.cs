@@ -42,8 +42,7 @@ namespace pizzeria.Controllers
         public IActionResult savetoDB([FromForm]IFormFile image)
         {
             var result = _streamService.GetBytes(image);
-            var imageId = _pizzeriaService.saveToDB(result);
-            return Ok(imageId);
+            return Ok(result);
         }
     }
 }

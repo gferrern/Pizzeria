@@ -35,3 +35,5 @@ msbuild.wrn
 
 # tmp folder
 .tmp/
+
+.src/ImageServer/node_modules/

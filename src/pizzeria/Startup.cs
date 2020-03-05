@@ -44,11 +44,15 @@ namespace pizzeria
             services.Add(streamService);
             var tempImageRepository = new ServiceDescriptor(typeof(ITempImageRepository),typeof(TempImageRepository),ServiceLifetime.Scoped);
             services.Add(tempImageRepository);  
+            var imageServerRepository = new ServiceDescriptor(typeof(IImageServerRepository),typeof(ImageServerRepository),ServiceLifetime.Scoped);
+            services.Add(imageServerRepository);
+
             services.AddMvc()
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.SuppressModelStateInvalidFilter = true;
                 });
+            services.AddHttpClient();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

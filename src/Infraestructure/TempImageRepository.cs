@@ -8,6 +8,8 @@ namespace pizzeria.Infraestructure
     public interface ITempImageRepository
     {
         void Add(TempImage image);
+        byte[] Get(Guid Id);
+        void Remove(Guid Id);
 
     }
 
@@ -21,6 +23,7 @@ namespace pizzeria.Infraestructure
             _connection = _configuration.GetValue<string>("redisConnection");
         }
         public void Add(TempImage image)
+
         {
             try
             {
@@ -33,9 +36,39 @@ namespace pizzeria.Infraestructure
             }
             catch (RedisException e)
             {
-                Console.WriteLine("Exception: {0}",e);
+                throw e;
             }
 
+        }
+        public byte[] Get(Guid Id){
+            try
+            {
+                using (var multiplexer = ConnectionMultiplexer.Connect(_connection))
+                {
+                    var db = multiplexer.GetDatabase();
+                    var members = db.SetMembers(Id.ToString());                    
+                    return members[0];
+                }
+            }
+            catch (RedisException e)
+            {
+                throw e;
+            }
+        }
+        public void Remove(Guid Id){
+            try
+            {
+                using (var multiplexer = ConnectionMultiplexer.Connect(_connection))
+                {
+                    var db = multiplexer.GetDatabase();
+                    db.KeyDelete(Id.ToString());
+                    
+                }
+            }
+            catch (RedisException e)
+            {
+                throw e;
+            }
         }
     }
 }

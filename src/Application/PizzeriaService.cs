@@ -1,4 +1,5 @@
 using pizzeria.Domain;
+using pizzeria.Dtos;
 using pizzeria.Infraestructure;
 using System.IO;
 
@@ -8,10 +9,13 @@ namespace pizzeria.Application
     {
         private readonly IPizzeriaRepository _repositoryPizzeria;
         private readonly ITempImageRepository _tempImageRepository;
-        public PizzeriaService(IPizzeriaRepository repositoryPizzeria, ITempImageRepository tempImageRepository)
+        private readonly IImageServerRepository _imageRepository;
+        public PizzeriaService(IPizzeriaRepository repositoryPizzeria, ITempImageRepository tempImageRepository, IImageServerRepository imageRepository)
         {
             _repositoryPizzeria = repositoryPizzeria;
             _tempImageRepository = tempImageRepository;
+            _imageRepository = imageRepository;
+            
         }
 
         public object Upload(byte[] image)
@@ -23,19 +27,12 @@ namespace pizzeria.Application
             };
         }
 
-        public object saveToDB(byte[] image)
+        public object Add(PizzeriaDTO createPIzza)
         {
-            var dto = new Dtos.PizzeriaDTO();
-            dto.Name = "Pepe";
-            using (var memoryStream = new MemoryStream(image))
-            {
-                dto.Image = memoryStream.ToArray();
-            }
-            var tmppizzeria = Pizzeria.Create(dto);
-            _repositoryPizzeria.Pizzeria.Add(tmppizzeria);
-            return new {
-                Id = tmppizzeria.Id
-            };
+            var image = _tempImageRepository.Get(createPIzza.Image);
+            _tempImageRepository.Remove(createPIzza.Image);
+            _imageRepository.GetRoutes(image);
+            return null;
         }
     }
 }

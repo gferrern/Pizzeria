@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace pizzeria.Dtos
@@ -7,7 +9,9 @@ namespace pizzeria.Dtos
         [Required]
         public string Name {get; set; }
         [Required]
-        public byte[] Image { get; set; }
+        public Guid Image { get; set; }
+
+        public HashSet<Guid> Ingredients{get;set;}
 
     }
 }
