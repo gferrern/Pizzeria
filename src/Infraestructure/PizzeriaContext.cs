@@ -27,19 +27,16 @@ namespace pizzeria.Infraestructure
             modelBuilder.Entity<User>().HasKey(c => new { c.Id });
             modelBuilder.Entity<Ingredient>().HasKey(c => new { c.Id });
             modelBuilder.Entity<Pizzeria>().HasKey(c => new { c.Id });
-
+            
+            //mal
             modelBuilder.Entity<Pizzeria>()
                             .HasMany<Image>(p => p.Images);
-
-
-
-            modelBuilder.Entity<Pizzeria>()
-                           .HasMany<PizzeriaIngredient>(p => p.Ingredients);
-            //falta la configrutacion HasMany a Images
-            //falta la configrutacion ManyMany a Ingreedientes
-
-            //modelBuilder.Entity<TempImage>().HasKey(c => new { c.Id });
+                            
+            //mal
+            modelBuilder.Entity<PizzeriaIngredient>().HasKey(c => new { c.Id });
+                         
         }
+                           
         public DbSet<User> User { get; set; }
         public DbSet<Pizzeria> Pizzeria { get; set; }
         public DbSet<Ingredient> Ingredient { get; set; }
