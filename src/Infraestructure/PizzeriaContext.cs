@@ -28,13 +28,18 @@ namespace pizzeria.Infraestructure
             modelBuilder.Entity<Ingredient>().HasKey(c => new { c.Id });
             modelBuilder.Entity<Pizzeria>().HasKey(c => new { c.Id });
             
-            //mal
+            //one to many
             modelBuilder.Entity<Pizzeria>()
-                            .HasMany<Image>(p => p.Images);
+                            .HasMany<Image>(p => p.Images)
+                            .WithOne().IsRequired();
                             
-            //mal
-            modelBuilder.Entity<PizzeriaIngredient>().HasKey(c => new { c.Id });
-                         
+            //many to many
+            modelBuilder.Entity<PizzeriaIngredient>()
+                            .HasMany<Pizzeria>(pi => pi.Pizza)
+                            .WithOne().IsRequired(); 
+            modelBuilder.Entity<Pizzeria>()
+                            .HasMany<PizzeriaIngredient>(pi => pi.Ingredients)
+                            .WithOne().IsRequired(); 
         }
                            
         public DbSet<User> User { get; set; }

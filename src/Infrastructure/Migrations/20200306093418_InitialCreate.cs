@@ -21,18 +21,6 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Pizzeria",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Pizzeria", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -47,31 +35,12 @@ namespace Infraestructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Image",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Url = table.Column<string>(nullable: true),
-                    PizzeriaId = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Image", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Image_Pizzeria_PizzeriaId",
-                        column: x => x.PizzeriaId,
-                        principalTable: "Pizzeria",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PizzeriaIngredient",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    PizzaId = table.Column<Guid>(nullable: true),
-                    IngredientId = table.Column<Guid>(nullable: true)
+                    IngredientId = table.Column<Guid>(nullable: true),
+                    PizzeriaId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,12 +51,44 @@ namespace Infraestructure.Migrations
                         principalTable: "Ingredient",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Pizzeria",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    PizzeriaIngredientId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Pizzeria", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_PizzeriaIngredient_Pizzeria_PizzaId",
-                        column: x => x.PizzaId,
+                        name: "FK_Pizzeria_PizzeriaIngredient_PizzeriaIngredientId",
+                        column: x => x.PizzeriaIngredientId,
+                        principalTable: "PizzeriaIngredient",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Image",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Url = table.Column<string>(nullable: true),
+                    PizzeriaId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Image", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Image_Pizzeria_PizzeriaId",
+                        column: x => x.PizzeriaId,
                         principalTable: "Pizzeria",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -96,32 +97,49 @@ namespace Infraestructure.Migrations
                 column: "PizzeriaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Pizzeria_PizzeriaIngredientId",
+                table: "Pizzeria",
+                column: "PizzeriaIngredientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PizzeriaIngredient_IngredientId",
                 table: "PizzeriaIngredient",
                 column: "IngredientId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PizzeriaIngredient_PizzaId",
+                name: "IX_PizzeriaIngredient_PizzeriaId",
                 table: "PizzeriaIngredient",
-                column: "PizzaId");
+                column: "PizzeriaId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_PizzeriaIngredient_Pizzeria_PizzeriaId",
+                table: "PizzeriaIngredient",
+                column: "PizzeriaId",
+                principalTable: "Pizzeria",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Image");
+            migrationBuilder.DropForeignKey(
+                name: "FK_PizzeriaIngredient_Pizzeria_PizzeriaId",
+                table: "PizzeriaIngredient");
 
             migrationBuilder.DropTable(
-                name: "PizzeriaIngredient");
+                name: "Image");
 
             migrationBuilder.DropTable(
                 name: "User");
 
             migrationBuilder.DropTable(
-                name: "Ingredient");
+                name: "Pizzeria");
 
             migrationBuilder.DropTable(
-                name: "Pizzeria");
+                name: "PizzeriaIngredient");
+
+            migrationBuilder.DropTable(
+                name: "Ingredient");
         }
     }
 }

@@ -10,7 +10,7 @@ using pizzeria.Infraestructure;
 namespace Infraestructure.Migrations
 {
     [DbContext(typeof(PizzeriaContext))]
-    [Migration("20200305124635_InitialCreate")]
+    [Migration("20200306093418_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace Infraestructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PizzeriaId")
+                    b.Property<Guid>("PizzeriaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Url")
@@ -66,7 +66,12 @@ namespace Infraestructure.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid>("PizzeriaIngredientId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("PizzeriaIngredientId");
 
                     b.ToTable("Pizzeria");
                 });
@@ -80,14 +85,14 @@ namespace Infraestructure.Migrations
                     b.Property<Guid?>("IngredientId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("PizzaId")
+                    b.Property<Guid>("PizzeriaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("IngredientId");
 
-                    b.HasIndex("PizzaId");
+                    b.HasIndex("PizzeriaId");
 
                     b.ToTable("PizzeriaIngredient");
                 });
@@ -114,9 +119,20 @@ namespace Infraestructure.Migrations
 
             modelBuilder.Entity("pizzeria.Domain.Image", b =>
                 {
-                    b.HasOne("pizzeria.Domain.Pizzeria", "Pizzeria")
+                    b.HasOne("pizzeria.Domain.Pizzeria", null)
                         .WithMany("Images")
-                        .HasForeignKey("PizzeriaId");
+                        .HasForeignKey("PizzeriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("pizzeria.Domain.Pizzeria", b =>
+                {
+                    b.HasOne("pizzeria.Domain.PizzeriaIngredient", null)
+                        .WithMany("Pizza")
+                        .HasForeignKey("PizzeriaIngredientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("pizzeria.Domain.PizzeriaIngredient", b =>
@@ -125,9 +141,11 @@ namespace Infraestructure.Migrations
                         .WithMany()
                         .HasForeignKey("IngredientId");
 
-                    b.HasOne("pizzeria.Domain.Pizzeria", "Pizza")
+                    b.HasOne("pizzeria.Domain.Pizzeria", null)
                         .WithMany("Ingredients")
-                        .HasForeignKey("PizzaId");
+                        .HasForeignKey("PizzeriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
