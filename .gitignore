@@ -37,3 +37,4 @@ msbuild.wrn
 .tmp/
 
 src/ImageServer/node_modules
+src/Infraestructure/Migrations
