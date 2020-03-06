@@ -35,11 +35,16 @@ namespace pizzeria.Infraestructure
                             
             //many to many
             modelBuilder.Entity<PizzeriaIngredient>()
-                            .HasMany<Pizzeria>(pi => pi.Pizza)
-                            .WithOne().IsRequired(); 
-            modelBuilder.Entity<Pizzeria>()
-                            .HasMany<PizzeriaIngredient>(pi => pi.Ingredients)
-                            .WithOne().IsRequired(); 
+                           .HasKey(c=> new { c.Id });
+                           
+
+            modelBuilder.Entity<PizzeriaIngredient>()
+                .HasOne(bc => bc.Pizza)
+                .WithMany(p => p.Ingredients).IsRequired();                
+                           
+            modelBuilder.Entity<PizzeriaIngredient>()
+                .HasOne(bc => bc.Ingredient)
+                .WithMany().IsRequired();                
         }
                            
         public DbSet<User> User { get; set; }

@@ -7,6 +7,7 @@ using pizzeria.utils;
 using pizzeria.Application;
 using pizzeria.Infraestructure;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace pizzeria
 {
@@ -35,16 +36,16 @@ namespace pizzeria
             var ingredientService = new ServiceDescriptor(typeof(IIngredientService), typeof(IngrdientService), ServiceLifetime.Scoped);
             services.Add(ingredientService);
             var ingredientRepository = new ServiceDescriptor(typeof(IIngredientRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
-            services.Add(ingredientRepository);           
+            services.Add(ingredientRepository);
             var pizzeriaService = new ServiceDescriptor(typeof(IPizzeriaService), typeof(PizzeriaService), ServiceLifetime.Scoped);
-            services.Add(pizzeriaService);          
-            var uploadRepository = new ServiceDescriptor(typeof(IPizzeriaRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);            
+            services.Add(pizzeriaService);
+            var uploadRepository = new ServiceDescriptor(typeof(IPizzeriaRepository), typeof(PizzeriaContext), ServiceLifetime.Scoped);
             services.Add(uploadRepository);
-            var streamService = new ServiceDescriptor(typeof(IStreamService),typeof(StreamService),ServiceLifetime.Scoped);
+            var streamService = new ServiceDescriptor(typeof(IStreamService), typeof(StreamService), ServiceLifetime.Scoped);
             services.Add(streamService);
-            var tempImageRepository = new ServiceDescriptor(typeof(ITempImageRepository),typeof(TempImageRepository),ServiceLifetime.Scoped);
-            services.Add(tempImageRepository);  
-            var imageServerRepository = new ServiceDescriptor(typeof(IImageServerRepository),typeof(ImageServerRepository),ServiceLifetime.Scoped);
+            var tempImageRepository = new ServiceDescriptor(typeof(ITempImageRepository), typeof(TempImageRepository), ServiceLifetime.Scoped);
+            services.Add(tempImageRepository);
+            var imageServerRepository = new ServiceDescriptor(typeof(IImageServerRepository), typeof(ImageServerRepository), ServiceLifetime.Scoped);
             services.Add(imageServerRepository);
 
             services.AddMvc()
@@ -58,6 +59,15 @@ namespace pizzeria
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetRequiredService<PizzeriaContext>();
+                Console.WriteLine("Se conectó a la base de datos: {0}",context.Database.CanConnect());  
+                context.Database.EnsureDeleted();
+                context.Database.Migrate();
+                Console.WriteLine("La migración se realizó correctamente: {0}",context.Database.EnsureCreated());
+            }
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
