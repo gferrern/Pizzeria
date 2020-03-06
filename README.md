@@ -45,3 +45,10 @@ npm install express --save
 npm install body-parser --save
 
 npm install --save multer
+
+
+Comandos para migración;
+ejecutar en carpeta src/pizzeria
+dotnet ef migrations add InitialCreate --startup-project ../pizzeria --project ../infraestructure
+
+dotnet ef database update
