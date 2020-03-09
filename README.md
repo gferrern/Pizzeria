@@ -2,8 +2,7 @@
 
 ### Development environment installation
   - .Net Core SDK: 
-    > https://dotnet.microsoft.com/download
-
+    > https://dotnet.microsoft.com/download/dotnet-core/3.1
   - Visual Studio Code 2010 with C# and Java plugin
     * https://visualstudio.microsoft.com/es/downloads
     * https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack
@@ -16,7 +15,8 @@
     * dotnet add package EntityFramework --version 6.4.0
   - Install Entity Framework Core:
     * dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-  
+    Install EF Core Tools:
+    * dotnet tool install --global dotnet-ef --version 3.1.2
   - Install Postman:
     * https://www.postman.com/downloads/
 

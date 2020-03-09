@@ -1,40 +1,27 @@
 {
     "version": "2.0.0",
     "tasks": [
+               {
+            "label": "remove-migrations",
+            "command": "dotnet-ef",
+            "type": "process",
+            "args": [
+                "migrations remove --project ${workspaceFolder}/src/infraestructure --startup-project ${workspaceFolder}/src/pizzeria"
+                            ],
+            "problemMatcher": "$msCompile"
+        },
         {
-            "label": "build AddAdmin",
+            "label": "buildAll",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/src/addadmin/addadmin.csproj",
+                "${workspaceFolder}/src/pizzeria/pizzeria.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish AddAdmin",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/src/addadmin/addadmin.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch AddAdmin",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/src/addadmin/addadmin.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+            "dependsOn": [
+                "buildAll-application"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -47,6 +34,63 @@
                 "${workspaceFolder}/src/pizzeria/pizzeria.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildAll-dto",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/DTOs/DTOs.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildAll-domain",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Domain/Domain.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "dependsOn": [
+                "buildAll-dto"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildAll-application",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Application/Application.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "dependsOn": [
+                "buildAll-infraestructure"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "buildAll-infraestructure",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/src/Infraestructure/Infraestructure.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "dependsOn": [
+                "buildAll-domain"
             ],
             "problemMatcher": "$msCompile"
         },
