@@ -1,13 +1,37 @@
 {
     "version": "2.0.0",
     "tasks": [
-               {
+        {
+            "label": "remove-migrations-2",
+            "command": "dotnet-ef",
+            "type": "process",
+            "args": [
+                "migrations remove --project '${workspaceFolder}\\src\\infraestructure' --startup-project '${workspaceFolder}\\src\\pizzeria'"
+            ],
+            "dependsOn": [
+                "database-update0"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "database-update0",
+            "command": "dotnet-ef",
+            "type": "process",
+            "args": [
+                "database update 0 --project '${workspaceFolder}\\src\\infraestructure' --startup-project '${workspaceFolder}\\src\\pizzeria'"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "remove-migrations",
             "command": "dotnet-ef",
             "type": "process",
             "args": [
-                "migrations remove --project ${workspaceFolder}/src/infraestructure --startup-project ${workspaceFolder}/src/pizzeria"
-                            ],
+                "migrations remove --project ${workspaceFolder}\\src\\infraestructure --startup-project ${workspaceFolder}\\src\\pizzeria"
+            ],
+            "dependsOn": [
+                "buildAll-application"
+            ],
             "problemMatcher": "$msCompile"
         },
         {
